@@ -30,6 +30,7 @@ db = dhcpcfg.db								#
 senderEmail = dhcpcfg.senderEmail					#
 senderPassword = dhcpcfg.senderPassword					#
 recipientEmails = dhcpcfg.recipientEmails				#
+url = dhcpcfg.ibxUrl
 #########################################################################
 
 #These variables keep track of different errors and successful trials of the script for the diagnostic report at the end
@@ -61,7 +62,7 @@ def updateIB(sqdb):
 
 #Connect to infoblox using Restful web services and update lease times accordingly, so that each lease updated is 180 days from the current time
 def updateSingleLease(macaddress):
-	ibxUrl = 'https://gm.ip.wustl.edu/wapi/v1.2/macfilteraddress'
+	ibxUrl = url + 'macfilteraddress'
 	payload = {'mac':macaddress,'filter':'CaptivePortal'}
 	try:
 		# If the below line fails, it's likely because infoblox blocks a certain number of concurrent https requests
@@ -81,7 +82,7 @@ def updateSingleLease(macaddress):
 	try:
 		newExp = time.time() + maxLease
 		modify_exp = {u'expiration_time': int(newExp)}
-		r = requests.put('https://gm.ip.wustl.edu/wapi/v1.2/' + obj_ref, verify=False, data=json.dumps(modify_exp), auth =('brink',password))
+		r = requests.put(url + obj_ref, verify=False, data=jsrn.dumps(modify_exp), auth =('brink',password))
 		global successes
 		successes += 1
 	except:
