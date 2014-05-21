@@ -82,7 +82,7 @@ def updateSingleLease(macaddress):
 	try:
 		newExp = time.time() + maxLease
 		modify_exp = {u'expiration_time': int(newExp)}
-		r = requests.put(url + obj_ref, verify=False, data=jsrn.dumps(modify_exp), auth =('brink',password))
+		r = requests.put(url + obj_ref, verify=False, data=jsrn.dumps(modify_exp), auth =(username,password))
 		global successes
 		successes += 1
 	except:
