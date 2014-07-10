@@ -122,7 +122,7 @@ The -i option specifies the time increment (in minutes) of how long of an increm
 	
 	maxLease -	The number of days used to set a user's DHCP expiration date into the future from their last DHCPACK event.
 
-	ibxUrl -	Infoblox Grid Master URL. i.e. 'https://gm.ip.wustl.edu/wapi/v1.2/'
+	ibxUrl -	Infoblox Grid Master URL. i.e. 'https://gm.ip.URL.com/wapi/v1.2/'
 
 	infobloxUser -	The username for the Infoblox account used to connect to the Grid Master
 
