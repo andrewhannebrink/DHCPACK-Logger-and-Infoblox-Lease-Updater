@@ -101,15 +101,12 @@ def main():
 		c = conn.cursor()	
 	except:
 		print 'error opening database...'
-		#EMAIL SOMEONE
 		sys.exit(-1)
 	# Update infoblox for the dhcp acks of the last week
 	try:
 		updateIB(c)
-		#EMAIL SOMEONE
 	except:
 		print 'Error updating infoblox leases in updateIB()'
-		#EMAIL SOMEONE
 		sys.exit(-1)
 	#Drop tempMacs and re-make it as an empty table to be re-populated throughout the next week by dhcplog.py
 	c.execute('''DROP TABLE tempMacs''')
