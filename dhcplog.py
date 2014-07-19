@@ -112,7 +112,6 @@
 
 import re
 import sys
-#import sqlite3
 import datetime
 import logging
 import time
@@ -224,7 +223,6 @@ def updateDB(conn, sqdb, date, clientIP, clientMA, clientHN):
 	#If clientID is not None and is not already in todaysIDs, append it to todaysIDs
 	if clientID and clientID not in todaysIDs:
 		todaysIDs.append(int(clientID))
-		#print clientID
 
 
 	#Do not add multiple rows in history for a user with identical times (date field). We do this because there are often duplicate lines in the infoblox.log.1 file that describe the same DHCPACK event at exactly the same time with the same user and information. This helps us from overpopulating the history table. If the clientID and date (timestamp from infoblox log file) already exist in the history table, it will be in todaysHistories, and we set 'exists' to 'True', and do not add a row to the history table. Otherwise, we check if the parameter 'clientHN' is 'None'. If it is not None, we add a row to the history table and append 'clientID' to 'todaysIDs' to be added to tempMacs.
